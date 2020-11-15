@@ -49,7 +49,7 @@ def get_text_messages_go(message):
         with open("all_news_habr.json", "w") as file:
             json.dump(result1, file, indent=4, ensure_ascii=False)
 
-        subprocess.call("/Users/a17760485/Desktop/telegrambot/sendDocumentJSON.sh", shell=True)
+        subprocess.call("sendDocumentJSON.sh", shell=True)
     elif message.text == "KA":
         bot.send_message(message.from_user.id, "comming soon...")
         keyboard = types.InlineKeyboardMarkup()
@@ -95,7 +95,7 @@ def callback_worker(call):
         with open("all_news_habr.json", "w") as file:
             json.dump(result1, file, indent=4, ensure_ascii=False)
 
-        subprocess.call("/Users/a17760485/Desktop/telegrambot/sendDocumentJSON.sh", shell=True)
+        subprocess.call("sendDocumentJSON.sh", shell=True)
 
         msg = "habr news"
         # Отправляем текст в Телеграм
@@ -130,8 +130,8 @@ def callback_worker(call):
             soup = BeautifulSoup(page, "lxml")
             link = soup.find_all("a", class_="post__title_link")
 
-            #   file = '/Users/a17760485/Desktop/telegrambot/output-pars' + str(n) + '.html'
-            file = f"/Users/a17760485/Desktop/telegrambot/habr-news-{item}.html"
+            #   file = 'output-pars' + str(n) + '.html'
+            file = f"habr-news-{item}.html"
             myfile1 = open(file, mode='w', encoding='UTF-8')
             myfile1.write(str(page))
             myfile1.close()
