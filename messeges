@@ -1,0 +1,23 @@
+$UpdateId = 0
+$token = 614428243:AAHJ1bdBnhlO5q_w0BNOB10BoALCcXpFSlA
+
+$URL = "https://api.telegram.org/bot$token/getUpdates?offset=$UpdateId&timeout=$ChatTimeout"
+
+$Request = Invoke-WebRequest -Uri $URL -Method Get
+$content = ConvertFrom-Json $Request.content
+
+# если на выходе 2 и более результатов возьмем только последний
+$str = $content.result | select -First 1
+$str = ($str).message
+
+$props = [ordered]@{
+                        ok = $content.ok
+                        UpdateId = ($str).update_id
+                        Message_ID = $str.message_id
+                        first_name = ($str.from).first_name
+                        last_name = ($str.from).last_name
+                        chat_id = ($str.chat).id
+                        text = $str.text
+                       }
+$obj = New-Object -TypeName PSObject -Property $props
+$obj

@@ -1,0 +1,12 @@
+#!/bin/bash
+  
+export TOKEN=614428243:AAHJ1bdBnhlO5q_w0BNOB10BoALCcXpFSlA
+export CHAT_ID=291140894
+export URL="https://api.telegram.org/bot614428243:AAHJ1bdBnhlO5q_w0BNOB10BoALCcXpFSlA/getFile"
+
+curl -s -X GET $URL -d chat_id=$CHAT_ID -d file_unique_id=$2 -d file_id=$1 > output_file.log
+cat output_file.log
+
+
+# https://api.telegram.org/file/bot614428243:AAHJ1bdBnhlO5q_w0BNOB10BoALCcXpFSlA/documents/file_1.dmg
+# cd /Users/a17760485/Downloads; curl -O https://api.telegram.org/file/bot614428243:AAHJ1bdBnhlO5q_w0BNOB10BoALCcXpFSlA/documents/file_1.dmg
